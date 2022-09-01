@@ -1,0 +1,12 @@
+packages:
+  products:
+    version: 1.0
+    actions:
+      campaign:
+        function: actions/campaign # source for the action; in this case it is a folder
+        runtime: nodejs:14
+        web: yes # publish the action as a web action
+        # include:
+        #   - ["./helper/offers.js", "./helper/request.js"]
+        annotations:
+          web-export: true

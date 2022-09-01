@@ -1,0 +1,16 @@
+{
+  "name": "score",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:worker": "zip worker.zip worker/*",
+    "build:action": "zip action.zip action/*",
+    "build:web": "zip web.zip action-web/*",
+    "clean:zip": "rm *.zip"
+  },
+  "keywords": [],
+  "author": "Neil Ruiz <nruizd.developer@gmail.com>",
+  "license": "ISC"
+}
