@@ -5,10 +5,15 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean:zip": "rm *.zip",
     "build:worker": "zip worker.zip worker/*",
     "build:action": "zip action.zip action/*",
-    "build:web": "zip web.zip action-web/*",
-    "clean:zip": "rm *.zip"
+    "build:cors": "zip cors.zip action-cors/*",
+    "build:all": "npm run build:worker && npm run build:action && npm run build:cors",
+    "deploy:worker": "wsk action update score/worker worker.zip --kind nodejs:14",
+    "deploy:action": "wsk action update score action.zip --web true --kind nodejs:14",
+    "deploy:cors": "wsk action update score/cors cors.zip --kind nodejs:14",
+    "deploy:all": "npm run build:all && npm run deploy:worker && npm run deploy:action && npm run deploy:web"
   },
   "keywords": [],
   "author": "Neil Ruiz <nruizd.developer@gmail.com>",
