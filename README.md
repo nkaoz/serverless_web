@@ -1,66 +1,93 @@
-#
+# Models RunTime
 
+Este es un proyecto simple consumir API's de Models de propensión.
+
+## Instalación
+
+Para instalar el proyecto, se debe ejecutar el siguiente comando:
+
+```bash
+  git clone git@github.com:nkaoz/wsk-template.git {NOMBRE_PROYECTO}  && cd {NOMBRE_PROYECTO} && npm install
 ```
-  # delete action
 
-  wsk action delete {ACTION}
-  wsk action delete {PACKAGE/ACTION}
+## Proyecto
 
-  #example
+Crear package en Adobe I/O Runtime
 
-  wsk action delete products/worker
-  wsk action delete products/campaign
-  wsk action delete products/handleCorsRequest
+```bash
+  wsk package create {NOMBRE_PROYECTO}
+```
 
-  wsk action update products/hello hello.js --web true
+Crear action
 
+```bash
+  #worker
+  wsk action create {NOMBRE_PROYECTO}/worker --kind nodejs:14 --web true worker.zip
+  #action
+  wsk action create {NOMBRE_PROYECTO}/action --kind nodejs:14 --web true action.zip
+  #cors
+  wsk action create {NOMBRE_PROYECTO}/handleCorsRequest --web true -a web-custom-options true --kind nodejs:14 cors-action.zip
+```
 
-  # create API
+Crear API
 
-  wsk api create {PATH} {ENDPOINT} {METHOD:POST|GET} {ACTION} --response-type http
+```bash
+  wsk api create /{NOMBRE_PROYECTO} /worker post {NOMBRE_PROYECTO}/action --response-type http
+  wsk api create /{NOMBRE_PROYECTO} /worker options {NOMBRE_PROYECTO}/handleCorsRequest --response-type http
+```
 
-  #example
+## Ejecución
 
-  wsk api create /recommendations /list post products/worker --response-type http
-  wsk api create /recommendations /list options products/handleCorsRequest --response-type http
+Borrar las acciones de tipo zip ejemplo:
 
+```bash
+  npm run clean:zip # clean zip file
+```
 
+Generar las acciones de tipo worker:
 
-  #example
-  wsk api delete /recommendations/list
+```bash
+  npm run build:worker # build worker
+```
 
-  wsk action create products/handleCorsRequest ./actions/cors-action.js --web true -a web-custom-options true
+Generar las acciones de action / invoker adobe
 
+```bash
+  npm run build:action # build action
+```
 
-  wsk action create products/campaign --web true --kind nodejs:14 campaign.zip
-  wsk action create products/worker --web true --kind nodejs:14 worker.zip
+Generar acciones de tipo action cors:
 
-  #update
+```bash
+  npm run build:cors # build cors
+```
 
-  wsk action update products/campaign --web true --kind nodejs:14 campaign.zip
+Generar todas las acciones:
 
+```bash
+  npm run build # build all
+```
 
-  wsk api create /recommendations /list post products/worker --response-type http
-  wsk api create /recommendations /list options products/handleCorsRequest --response-type http
+Publicar todas las acciones:
 
-  wsk action create products/handleCorsRequest ./actions/cors-action.js --web true -a web-custom-options true
-  wsk action create products/campaign --web true -a web-custom-options true --kind nodejs:14 campaign.zip
-  wsk action create products/worker --web true -a web-custom-options true --kind nodejs:14 worker.zip
+```bash
+  npm run deploy # deploy all
+```
 
+Publicar todas las acciones de tipo worker:
 
+```bash
+  npm run deploy:worker # deploy worker
+```
 
-  wsk api create /recommendations-uat /list post uat/worker --response-type http
-  wsk api create /recommendations-uat /list options uat/handleCorsRequest --response-type http
+Publicar todas las acciones de tipo action:
 
-  wsk action create uat/handleCorsRequest ./actions/cors-action.js --web true -a web-custom-options true
-  wsk action create uat/campaign --web true -a web-custom-options true --kind nodejs:14 campaign.zip
-  wsk action create uat/worker --web true -a web-custom-options true --kind nodejs:14 worker.zip
+```bash
+  npm run deploy:action # deploy action
+```
 
+publicar todas las acciones de tipo cors:
 
-
-  wsk action delete uat/worker
-  wsk action delete uat/campaign
-  wsk action delete uat/handleCorsRequest
-
-
+```bash
+  npm run deploy:cors # deploy cors
 ```
