@@ -1,4 +1,4 @@
-# Models RunTime
+# wsk-template
 
 Este es un proyecto simple consumir API's de Models de propensión.
 
