@@ -1,6 +1,6 @@
 # wsk-template
 
-Este es un proyecto simple consumir API's de Models de propensión.
+Este es un proyecto base de Adobe I/O Runtime de OpenWhisk para NodeJS 14.
 
 ## Instalación
 
