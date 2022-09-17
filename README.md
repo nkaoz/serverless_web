@@ -1,13 +1,18 @@
 # wsk-template
 
-Este es un proyecto base de Adobe I/O Runtime de OpenWhisk para NodeJS 14.
+Este es un proyecto base de Adobe I/O Runtime de OpenWhisk para NodeJS 16.
 
 ## Instalación
 
 Para instalar el proyecto, se debe ejecutar el siguiente comando:
 
 ```bash
-  git clone git@github.com:nkaoz/wsk-template.git {NOMBRE_PROYECTO}  && cd {NOMBRE_PROYECTO} && npm install
+  git clone git@github.com:nkaoz/wsk-template.git {NOMBRE_PROYECTO}  && cd {NOMBRE_PROYECTO}
+  git set-url {URL_REPOCIORIO}
+  npm install
+  git add .
+  git commit -m "Initial commit"
+  git push -u origin main
 ```
 
 ## Proyecto
